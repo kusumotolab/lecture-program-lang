@@ -1,0 +1,125 @@
+/* @theme shin */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    --color-font-main: #012F4B;
+    --color-font-sub: #474747;
+    --color-font-accent: rgb(201, 57, 64);
+    --color-background: #EBEEF9;
+}
+
+ul.metadata,
+.breadcrumb {
+    display: none;
+}
+
+.col-md-9 {
+    flex: unset;
+    max-width: unset;
+}
+
+.col-md-3 {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+*::selection {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+.md-typeset {
+    font-size: .9rem;
+}
+
+blockquote,
+code {
+    font-family: consolas, "Noto Sans JP";
+    color: var(--color-font-sub);
+    background: #f8f8f8;
+    border-radius: 3px;
+}
+
+code {
+    padding: 1px 6px;
+}
+
+pre {
+    font-size: inherit;
+}
+
+
+.md-typeset h1:nth-child(1) {
+    margin-top: 0;
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+    font-family: "Noto Sans", "Noto Sans JP";
+    color: var(--color-font-main);
+    margin: 2rem 0 .5rem;
+}
+
+.md-typeset h1 {
+    font-size: 200%;
+    font-weight: 900;
+}
+
+.md-typeset h2 {
+    font-size: 150%;
+    font-weight: 700;
+}
+
+ul {
+    list-style-type: "- ";
+}
+
+ol {
+    padding-inline-start: 45px;
+}
+
+u,
+u::selection {
+    text-decoration: underline 8pt;
+    text-decoration-color: #ffc3d6;
+    text-underline-offset: -3px;
+}
+
+.md-typeset p,
+.md-typeset ul li,
+.md-typeset__table table tr td {
+    color: var(--color-font-sub);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.md-typeset table:not([class]) td {
+    padding: 5px 10px;
+}
+
+.md-typeset table:not([class]) {
+    font-size: unset;
+}
+
+.md-typeset .admonition {
+    font-size: unset;
+}
+
+.highlight span.filename {
+    color: var(--color-font-main);
+    padding: .5em 1em;
+}
+
+mjx-container,
+mjx-mtd {
+    text-align: unset !important;
+}

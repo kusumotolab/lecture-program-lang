@@ -1,0 +1,56 @@
+site_name: 計算機言語
+
+nav:
+  - "はじめに": intro.md
+  - "プログラミング言語の特徴と分類": features.md
+  - "プログラミング言語の構文": syntax.md
+  - "命令型プログラミング言語": imperative.md
+  - "オブジェクト指向言語": oo.md
+  - "関数型言語": functional.md
+  - "論理型言語": logic.md
+  - "C言語": c.md
+  - "Java言語": java.md
+  - "________xx": _sandbox.md
+
+theme:
+  name: material
+  locale: ja
+  -logo: assets/logo.png
+  features:
+    - content.code.copy
+    - content.code.annotate
+
+extra_css:
+  - extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex: # for math
+      generic: true
+
+  - pymdownx.superfences: # flowchart
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - attr_list # image
+  - md_in_html
+
+extra_javascript: # for math
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
