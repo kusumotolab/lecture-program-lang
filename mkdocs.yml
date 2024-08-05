@@ -1,7 +1,8 @@
 site_name: 計算機言語
 
 nav:
-  - "はじめに": intro.md
+  - "講義の概要": about.md
+  - "序論": intro.md
   - "プログラミング言語の特徴と分類": features.md
   - "プログラミング言語の構文": syntax.md
   - "命令型プログラミング言語": imperative.md

@@ -36,22 +36,19 @@ body {
     font-size: .9rem;
 }
 
-blockquote,
-code {
+.md-typeset blockquote,
+.md-typeset code {
     font-family: consolas, "Noto Sans JP";
     color: var(--color-font-sub);
     background: #f8f8f8;
     border-radius: 3px;
+    border: 1px solid #ceced5;
+    margin: 0 2px;
 }
 
-code {
-    padding: 1px 6px;
+.md-typeset pre>code {
+    border: unset;
 }
-
-pre {
-    font-size: inherit;
-}
-
 
 .md-typeset h1:nth-child(1) {
     margin-top: 0;
@@ -115,11 +112,20 @@ p {
 }
 
 .highlight span.filename {
-    color: var(--color-font-main);
+    color: var(--color-font-sub);
     padding: .5em 1em;
 }
 
 mjx-container,
 mjx-mtd {
     text-align: unset !important;
+}
+
+.highlight span.filename {
+    background-color: #e8e9ee;
+    border-bottom: unset;
+}
+
+p.r {
+    text-align: right;
 }
