@@ -2,16 +2,15 @@ site_name: 計算機言語
 
 nav:
   - "講義の概要": about.md
-  - "序論": intro.md
-  - "特徴と分類": features.md
-  - "構文": syntax.md
+  - "序論": pre-intro.md
+  - "特徴と分類": pre-features.md
+  - "構文": pre-syntax.md
   - "命令型言語": prog-imperative.md
   - "オブジェクト指向言語": prog-oo.md
   - "関数型言語": prog-functional.md
   - "論理型言語": prog-logic.md
   - "C言語": lang-c.md
   - "Java言語": lang-java.md
-  - "________xx": _sandbox.md
 
 theme:
   name: material
