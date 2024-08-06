@@ -5,7 +5,7 @@ nav:
   - "序論": intro.md
   - "特徴と分類": features.md
   - "構文": syntax.md
-  - "命令型プログラミング言語": prog-imperative.md
+  - "命令型言語": prog-imperative.md
   - "オブジェクト指向言語": prog-oo.md
   - "関数型言語": prog-functional.md
   - "論理型言語": prog-logic.md

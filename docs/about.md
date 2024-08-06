@@ -17,10 +17,10 @@ hi-lock: end
 例えば以下のC言語のソースプログラムが与えられたときに；
 ```java title="C言語による偶数判定プログラムの例"
 int isEven(int n) {
-    if (n % 2 == 0) {
-        return 1;
-    }
-    return 0;
+  if (n % 2 == 0) {
+    return 1;
+  }
+  return 0;
 }
 ```
 
@@ -49,7 +49,8 @@ CやJavaなどの命令型プログラミング言語を中心に説明する．
 
 教科書：「[プログラミング言語論](https://www.coronasha.co.jp/np/isbn/9784339027044/)」，コロナ社，ISBN978-4-339-02704-4
 
-![](assets/book.jpg){width="300"}
+??? info "プログラミング言語論"
+    ![](assets/book.jpg)
 
 
 ## 成績評価
