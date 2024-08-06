@@ -3,26 +3,29 @@ site_name: 計算機言語
 nav:
   - "講義の概要": about.md
   - "序論": intro.md
-  - "プログラミング言語の特徴と分類": features.md
-  - "プログラミング言語の構文": syntax.md
-  - "命令型プログラミング言語": imperative.md
-  - "オブジェクト指向言語": oo.md
-  - "関数型言語": functional.md
-  - "論理型言語": logic.md
-  - "C言語": c.md
-  - "Java言語": java.md
+  - "特徴と分類": features.md
+  - "構文": syntax.md
+  - "命令型プログラミング言語": prog-imperative.md
+  - "オブジェクト指向言語": prog-oo.md
+  - "関数型言語": prog-functional.md
+  - "論理型言語": prog-logic.md
+  - "C言語": lang-c.md
+  - "Java言語": lang-java.md
   - "________xx": _sandbox.md
 
 theme:
   name: material
   locale: ja
-  -logo: assets/logo.png
+  _logo: assets/logo.png
   features:
     - content.code.copy
     - content.code.annotate
+  icon:
+    admonition:
+      bug: fontawesome/solid/question
 
 extra_css:
-  - extra.css
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -51,7 +54,9 @@ markdown_extensions:
 
   - attr_list # image
   - md_in_html
+  - def_list
 
 extra_javascript: # for math
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+

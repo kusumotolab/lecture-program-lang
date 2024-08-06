@@ -1,3 +1,6 @@
+---
+icon: material/pen
+---
 
 # プログラミング言語の特徴と分類
 <span class="md-tag">教科書2章</span>

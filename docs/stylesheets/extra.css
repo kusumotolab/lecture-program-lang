@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 :root {
     --color-font-main: #012F4B;
     --color-font-sub: #474747;
@@ -11,8 +10,18 @@
 }
 
 ul.metadata,
-.breadcrumb {
+.breadcrumb,
+md-nav__title {
     display: none;
+}
+
+.md-header {
+    background: #2d3c90;
+}
+
+.md-nav__title,
+.md-nav--secondary {
+    box-shadow: unset !important;
 }
 
 .col-md-9 {
@@ -30,10 +39,6 @@ body {
 
 *::selection {
     background-color: rgba(255, 255, 0, 0.5);
-}
-
-.md-typeset {
-    font-size: .9rem;
 }
 
 .md-typeset blockquote,
@@ -128,4 +133,20 @@ mjx-mtd {
 
 p.r {
     text-align: right;
+}
+
+.md-typeset dd {
+    margin: 0;
+}
+
+.md-typeset dt {
+    margin-top: .75rem;
+}
+
+.md-typeset dl>dt:nth-child(1) {
+    margin-top: 0;
+}
+
+.md-typeset .admonition, .md-typeset details {
+    font-size: inherit;
 }
