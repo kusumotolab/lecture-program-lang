@@ -41,7 +41,7 @@ store A    // 演算レジスタの内容をメモリ3番地（A）に格納
 ```
 
 
-```bin title="対応する機械語プログラム"
+```title="対応する機械語プログラム"
 0000 0000 0001   // load B
 0001 0000 0010   // add C
 0010 0000 0011   // store A
@@ -59,7 +59,7 @@ store A    // 演算レジスタの内容をメモリ3番地（A）に格納
     9      4  5  9  store A 
 ```
 
-```c title="上記プログラムで実現したい操作"
+```title="上記プログラムで実現したい操作"
 a <- b + c
 ```
 
@@ -90,7 +90,7 @@ C言語やJava，Python，Rustなどは高級言語である．
 <!-- 昨今のソフトウェア開発のほとんどは高級言語が利用される．-->
 
 ??? info "プログラミング言語の歴史"
-    ![](https://asset-cdn.tecky.io/2021/10/20/programming_languages_family_trees_uid_616fd206b9de0.png)
+    ![](assets/programming-language-history.png)
     copyright by [^1]
 
 [^1]: Gordon Lau, https://tecky.io/en/blog/evolution-of-programming-languages/

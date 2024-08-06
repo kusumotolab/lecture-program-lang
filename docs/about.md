@@ -44,14 +44,16 @@ CやJavaなどの命令型プログラミング言語を中心に説明する．
 ## 授業の進め方
 
 基本は教科書に準拠する．
-また，教科書の内容を噛み砕いたWebサイトに従って授業を進める．
-[https://kusumotolab.github.io/lecture-program-lang/](https://kusumotolab.github.io/lecture-program-lang/)
+また，教科書の内容を噛み砕いた[Webサイト](https://kusumotolab.github.io/lecture-program-lang/)に従って授業を進める．
+
 
 教科書：「[プログラミング言語論](https://www.coronasha.co.jp/np/isbn/9784339027044/)」，コロナ社，ISBN978-4-339-02704-4
 
-??? info "プログラミング言語論"
+??? info "教科書の表紙"
     ![](assets/book.jpg)
 
+可能な限り分かりやすい説明を試みるが，理論の講義であるため抽象的で捉えにくい部分もある．
+自発的な学習が必須である点を認識しておくこと．
 
 ## 成績評価
 講義への参加姿勢，および中間試験と期末試験の合計点により成績を決める．

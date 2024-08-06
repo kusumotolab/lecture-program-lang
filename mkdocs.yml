@@ -16,11 +16,14 @@ nav:
 theme:
   name: material
   locale: ja
-  _logo: assets/logo.png
+  font:
+    text: Noto
   features:
     - content.code.copy
     - content.code.annotate
   icon:
+    logo: fontawesome/solid/wrench
+    annotation: material/plus-circle
     admonition:
       bug: fontawesome/solid/question
 
@@ -60,3 +63,6 @@ extra_javascript: # for math
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
+
+repo_url: https://github.com/kusumotolab/lecture-program-lang
+repo_name: kusumotolab/lecture-program-lang

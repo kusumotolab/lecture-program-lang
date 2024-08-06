@@ -1,12 +1,9 @@
-/* @theme shin */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-
 :root {
     --color-font-main: #012F4B;
     --color-font-sub: #474747;
     --color-font-accent: rgb(201, 57, 64);
     --color-background: #EBEEF9;
+    --md-default-fg-color--light: #012F4B;
 }
 
 ul.metadata,
@@ -22,20 +19,9 @@ md-nav__title {
 .md-nav__title,
 .md-nav--secondary {
     box-shadow: unset !important;
+    background: unset !important;
 }
 
-.col-md-9 {
-    flex: unset;
-    max-width: unset;
-}
-
-.col-md-3 {
-    display: none;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
 
 *::selection {
     background-color: rgba(255, 255, 0, 0.5);
@@ -43,7 +29,6 @@ body {
 
 .md-typeset blockquote,
 .md-typeset code {
-    font-family: consolas, "Noto Sans JP";
     color: var(--color-font-sub);
     background: #f8f8f8;
     border-radius: 3px;
@@ -61,7 +46,6 @@ body {
 
 .md-typeset h1,
 .md-typeset h2 {
-    font-family: "Noto Sans", "Noto Sans JP";
     color: var(--color-font-main);
     margin: 2rem 0 .5rem;
 }
@@ -147,6 +131,11 @@ p.r {
     margin-top: 0;
 }
 
-.md-typeset .admonition, .md-typeset details {
+.md-typeset .admonition,
+.md-typeset details {
     font-size: inherit;
+}
+
+.md-typeset blockquote>p {
+    margin: .5rem 0;
 }
