@@ -79,3 +79,5 @@ plugins:
   - search
   - git-revision-date-localized:
       type: date
+
+site_url: https://kusumotolab.github.io/lecture-program-lang/
