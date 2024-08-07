@@ -4,9 +4,12 @@
     --color-font-accent: rgb(201, 57, 64);
     --md-default-fg-color--light: #6e78b2;
     --md-primary-fg-color: #354881;
+    --md-footer-bg-color: var(--md-primary-fg-color);
     --md-code-hl-comment-color: #8b8b93;
     --md-code-font: "Consolas";
-    --md-code-bg-color: #e8e9ee;
+    --md-code-bg-color: #f8f8f8;
+    --md-code-title-bg-color: #e8e9ee; /* self defined */
+    --md-typeset-a-color: var(--md-primary-fg-color);
 }
 
 ul.metadata,
@@ -22,7 +25,7 @@ md-nav__title {
 }
 
 *::selection {
-    background-color: rgba(255, 255, 0, 0.5);
+    background-color: rgba(255, 255, 0, 0.4);
 }
 
 .md-nav--primary .md-nav__title[for=__drawer] {
@@ -31,14 +34,18 @@ md-nav__title {
 
 .md-typeset blockquote,
 .md-typeset code {
-    color: var(--color-font-sub);
-    background: #f8f8f8;
     border-radius: 3px;
     border: 1px solid #ceced5;
     margin: 0 2px;
 }
 
-.md-typeset pre>code {
+.highlight span.filename,
+.md-typeset pre code {
+    font-size: unset;
+}
+
+
+.md-typeset pre code {
     border: unset;
 }
 
@@ -62,16 +69,19 @@ md-nav__title {
     font-weight: 700;
 }
 
-.md-typeset p,
-.md-typeset ul li,
-.md-typeset ol li,
-.md-typeset__table table tr td {
+
+.md-typeset,
+.md-typeset__table,
+.md-tooltip__inner {
     color: var(--color-font-sub);
     font-weight: 500;
-    line-height: 1.2;
     margin-bottom: 0;
 }
 
+.md-typeset ul li,
+.md-typeset ol li {
+    line-height: 1;
+}
 .md-typeset table:not([class]) td,
 .md-typeset table:not([class]) th {
     padding: 5px 10px;
@@ -83,7 +93,8 @@ md-nav__title {
 
 .md-typeset table thead {
     color: var(--color-font-sub);
-    background: var(--md-code-bg-color);
+    background-color: var(--md-typeset-table-color);
+    font-size: .85em;
 }
 
 .md-typeset .admonition {
@@ -91,8 +102,9 @@ md-nav__title {
 }
 
 .highlight span.filename {
+    background-color: var(--md-code-title-bg-color);
     color: var(--color-font-sub);
-    padding: .5em 1em;
+    --padding: .5em 1em;
     border-bottom: unset;
 }
 
@@ -124,10 +136,27 @@ md-nav__title {
 
 .md-tooltip__inner {
     font-size: inherit;
-    background-color: #f6f7f9;
     border: 1px solid silver;
 }
 
 .md-nav__list {
     color: var(--color-font-main);
+}
+
+.md-nav__link--active:after {
+    content: "◀";
+}
+
+.md-typeset .md-tag {
+    background-color: var(--md-primary-fg-color);
+    color: white;
+}
+
+.highlight.language-clean .mi,
+.highlight.language-clean .nc,
+.highlight.language-clean .mo,
+.highlight.language-clean .o,
+.highlight.language-clean .p
+{
+    color: var(--md-code-hl-name-color);
 }

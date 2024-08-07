@@ -20,11 +20,15 @@ theme:
   features:
     - content.code.copy
     - content.code.annotate
+    - navigation.footer
   icon:
-    logo: fontawesome/solid/wrench
+    logo: fontawesome/solid/keyboard
     annotation: material/plus-circle
     admonition:
       bug: fontawesome/solid/question
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+  favicon: assets/favicon.svg
 
 extra_css:
   - stylesheets/extra.css
