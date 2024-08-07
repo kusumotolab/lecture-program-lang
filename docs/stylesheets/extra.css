@@ -2,8 +2,11 @@
     --color-font-main: #012F4B;
     --color-font-sub: #474747;
     --color-font-accent: rgb(201, 57, 64);
-    --color-background: #EBEEF9;
     --md-default-fg-color--light: #6e78b2;
+    --md-primary-fg-color: #354881;
+    --md-code-hl-comment-color: #8b8b93;
+    --md-code-font: "Roboto Mono";
+    --md-code-bg-color: #e8e9ee;
 }
 
 ul.metadata,
@@ -12,19 +15,18 @@ md-nav__title {
     display: none;
 }
 
-.md-header {
-    background: #2d3c90;
-}
-
 .md-nav__title,
 .md-nav--secondary {
     box-shadow: unset !important;
     background: unset !important;
 }
 
-
 *::selection {
     background-color: rgba(255, 255, 0, 0.5);
+}
+
+.md-nav--primary .md-nav__title[for=__drawer] {
+    color: var(--md-primary-fg-color);
 }
 
 .md-typeset blockquote,
@@ -60,23 +62,9 @@ md-nav__title {
     font-weight: 700;
 }
 
-ul {
-    list-style-type: "- ";
-}
-
-ol {
-    padding-inline-start: 45px;
-}
-
-u,
-u::selection {
-    text-decoration: underline 8pt;
-    text-decoration-color: #ffc3d6;
-    text-underline-offset: -3px;
-}
-
 .md-typeset p,
 .md-typeset ul li,
+.md-typeset ol li,
 .md-typeset__table table tr td {
     color: var(--color-font-sub);
     font-weight: 500;
@@ -84,16 +72,18 @@ u::selection {
     margin-bottom: 0;
 }
 
-p {
-    margin-bottom: 0.5rem;
-}
-
-.md-typeset table:not([class]) td {
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
     padding: 5px 10px;
 }
 
 .md-typeset table:not([class]) {
     font-size: unset;
+}
+
+.md-typeset table thead {
+    color: var(--color-font-sub);
+    background: var(--md-code-bg-color);
 }
 
 .md-typeset .admonition {
@@ -103,20 +93,7 @@ p {
 .highlight span.filename {
     color: var(--color-font-sub);
     padding: .5em 1em;
-}
-
-mjx-container,
-mjx-mtd {
-    text-align: unset !important;
-}
-
-.highlight span.filename {
-    background-color: #e8e9ee;
     border-bottom: unset;
-}
-
-p.r {
-    text-align: right;
 }
 
 .md-typeset dd {
@@ -124,7 +101,7 @@ p.r {
 }
 
 .md-typeset dt {
-    margin-top: .75rem;
+    margin-top: .5rem;
 }
 
 .md-typeset dl>dt:nth-child(1) {
@@ -138,4 +115,19 @@ p.r {
 
 .md-typeset blockquote>p {
     margin: .5rem 0;
+}
+
+.md-typeset .admonition-title:before,
+.md-typeset summary:before {
+    top: unset;
+}
+
+.md-tooltip__inner {
+    font-size: inherit;
+    background-color: #f6f7f9;
+    border: 1px solid silver;
+}
+
+.md-nav__list {
+    color: var(--color-font-main);
 }

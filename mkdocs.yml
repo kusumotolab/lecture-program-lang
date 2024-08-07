@@ -1,16 +1,16 @@
-site_name: 計算機言語
+site_name: Programming Language
 
 nav:
   - "講義の概要": about.md
   - "序論": pre-intro.md
   - "特徴と分類": pre-features.md
   - "構文": pre-syntax.md
-  - "命令型言語": prog-imperative.md
-  - "オブジェクト指向言語": prog-oo.md
-  - "関数型言語": prog-functional.md
-  - "論理型言語": prog-logic.md
-  - "C言語": lang-c.md
-  - "Java言語": lang-java.md
+  - "命令型言語": paradigm-imperative.md
+  - "オブジェクト指向言語": paradigm-oo.md
+  - "関数型言語": paradigm-functional.md
+  - "論理型言語": paradigm-logic.md
+  - "C言語": language-c.md
+  - "Java言語": language-java.md
 
 theme:
   name: material
@@ -57,6 +57,15 @@ markdown_extensions:
   - attr_list # image
   - md_in_html
   - def_list
+  
+  - pymdownx.critic # formatting
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+  - toc:
+      permalink: true
 
 extra_javascript: # for math
   - javascripts/mathjax.js
@@ -65,3 +74,8 @@ extra_javascript: # for math
 
 repo_url: https://github.com/kusumotolab/lecture-program-lang
 repo_name: kusumotolab/lecture-program-lang
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      type: date
