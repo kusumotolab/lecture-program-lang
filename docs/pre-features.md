@@ -80,7 +80,7 @@ LispやScalaは関数型パラダイムを採用しており，命令形とは�
     ![](assets/neumann.gif)
     &copy;[^1]
 
-[^1]: http://www.lanl.gov/history/atomicbomb/images/NeumannL.GIF
+[^1]: [http://www.lanl.gov/](http://www.lanl.gov/)
 
 
 プログラムとデータを記憶装置に格納し，順番に読み込んで実行するコンピュータである．
@@ -125,7 +125,7 @@ store A
 
 基本要素：
 :    変数 ... データと計算結果を保持
-:    文　 ... 代入文（`=`）や制御文（`if`，`for`）など
+:    文　 ... 代入文（`=`）や制御文（`if` `for`）など
 
 特徴：
 :    ①代入文の繰り返しで計算を行う
@@ -156,16 +156,16 @@ RAMは1個のレジスタ`c(0)`を持つ．
 ここでは入出力テープは省略して考える．
 
 ```clean title="RAMの構成"
-■ プログラム
-load A   ← プログラムカウンタ（基本は一つずつ逐次的に進む）
-add B
-store C
+■プログラム        ■プログラムカウンタ
+0000 .. (load A)   ◀  // 一つずつ逐次的に進む
+0001 .. (add B)
+0000 .. (store C)
 
-■ 記憶装置
-c(0) [ 0 ] レジスタ
-c(1) [ 2 ] メモリ
-c(2) [ 5 ]   〃
- ..    ..    〃
+■記憶装置
+c(0) [ 0 ]  // レジスタ
+c(1) [ 2 ]  // メモリ
+c(2) [ 5 ]  //  〃
+ ..    ..   //  〃
 ```
 
 機械語命令は演算コードとオペランドの組で構成される．
@@ -242,3 +242,41 @@ RAMの機械語プログラムは先頭から逐次的に実行されるが，�
 | `halt`    | 実行終了                                          |
 
     
+以上がRAMの主要構成の説明となる．
+続いて，具体的な計算プログラムを題材にRAMの挙動を考える．
+題材は $\Sigma_{n=1}^{50}n^2$ を出力するプログラムである．
+
+```c title="題材プログラム"
+main() {
+    int i, square, sum;
+    sum = 0;
+    for (i = 1; i <= 50; i++) {
+        square = i * i;
+        sum += square;
+    }
+    printf("%d", sum);
+}
+```
+
+```clean linenums="1" title="a"
+       load   #0
+       store  3
+       load   #1
+       store  1
+loop:  load   1
+       sub    #50
+       jgtz   exit
+       load   1
+       mult   1
+       store  2
+       load   3
+       add    2
+       store  3
+       load   1
+       add    #1
+       store  1
+       jump   loop
+exit:  write  3
+       halt
+      
+```

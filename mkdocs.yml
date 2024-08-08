@@ -17,6 +17,7 @@ theme:
   locale: ja
   font:
     text: Noto
+    code: Roboto Mono
   features:
     - content.code.copy
     - content.code.annotate

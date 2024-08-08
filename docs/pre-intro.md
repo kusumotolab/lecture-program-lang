@@ -93,7 +93,7 @@ C言語やJava，Python，Rustなどは高級言語である．
     ![](assets/programming-language-history.png)
     &copy;[^1]
 
-[^1]: Gordon Lau, https://tecky.io/en/blog/evolution-of-programming-languages/
+[^1]: Gordon Lau, [https://tecky.io/en/blog/evolution-of-programming-languages/](https://tecky.io/en/blog/evolution-of-programming-languages/)
 
 ## コンパイラ
 
