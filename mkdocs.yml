@@ -1,7 +1,7 @@
 site_name: Programming Language
 
 nav:
-  - "Home": index.md
+  - "計算機言語": index.md
   - "講義の概要": about.md
   - "序論": pre-intro.md
   - "特徴と分類": pre-features.md
