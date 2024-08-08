@@ -9,7 +9,8 @@
     --md-code-fg-color: var(--color-font-sub);
     --md-code-bg-color: #f8f8f8;
     --md-code-hl-comment-color: var(--md-default-fg-color--light);
-    --md-typeset-a-color: #354881;
+    ----md-typeset-a-color: #354881;
+    --md-typeset-a-color: var(--md-primary-fg-color);
     --md-typeset-table-color: #dbe2f4;
     /* self defined */
     --md-code-title-bg-color: #e8e9ee;

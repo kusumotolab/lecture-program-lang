@@ -1,3 +1,12 @@
+---
+icon: material/home
+---
+<!--
+hi-lock: (("^!!!.*" (0 "hi-red-b" t)))
+hi-lock: (("^\\?\\?\\?.*" (0 "hi-red-b" t)))
+hi-lock: end
+-->
+
 # 計算機言語
 
 ## ここは
