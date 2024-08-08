@@ -1,7 +1,7 @@
-site_name: Programming Language
+site_name: 計算機言語
 
 nav:
-  - "計算機言語": index.md
+  - "Home": index.md
   - "講義の概要": about.md
   - "序論": pre-intro.md
   - "特徴と分類": pre-features.md
@@ -70,15 +70,15 @@ markdown_extensions:
   - pymdownx.tilde
 
   - toc:
-      permalink: true
+      permalink: '#'
 
 extra_javascript: # for math
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 
-repo_url: https://github.com/kusumotolab/lecture-program-lang
-repo_name: kusumotolab/lecture-program-lang
+_repo_url: https://github.com/kusumotolab/lecture-program-lang
+_repo_name: kusumotolab/lecture-program-lang
 
 plugins:
   - search

@@ -157,17 +157,23 @@
 .highlighttable .linenos {
     font-size: unset;
 }
+
 .highlighttable tr:nth-child(2) {
     font-size: unset;
     border: 1px solid var(--md-code-title-bg-color);
 }
+
 .highlighttable pre code {
     border: unset;
 }
 
+.md-typeset a:hover {
+    text-decoration: underline;
+    text-underline-offset: .15em;
+}
 
 .md-typeset .footnote a {
-    color: var(--md-default-fg-color--light);
+    color: unset;
 }
 
 span.arithmatex mjx-container {
