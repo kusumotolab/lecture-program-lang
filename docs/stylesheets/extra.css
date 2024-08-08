@@ -24,7 +24,7 @@
 }
 
 *::selection {
-    background-color: rgba(255, 255, 0, 0.4);
+    background-color: rgba(255, 255, 0, 0.3);
 }
 
 .md-nav--primary .md-nav__title[for=__drawer] {
@@ -167,13 +167,30 @@
     border: unset;
 }
 
+.md-nav a:hover {
+    background-color: #f7f9ff;
+}
+
 .md-typeset a:hover {
     text-decoration: underline;
     text-underline-offset: .15em;
 }
 
+.md-typeset a.headerlink:hover {
+    text-decoration: none;
+}
+
 .md-typeset .footnote a {
     color: unset;
+}
+
+.md-nav__link {
+    padding: 3px 0;
+    margin-top: 0;
+}
+
+.md-nav__title {
+    padding-bottom: 3px;
 }
 
 span.arithmatex mjx-container {
