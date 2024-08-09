@@ -82,3 +82,8 @@ plugins:
       type: date
 
 site_url: https://kusumotolab.github.io/lecture-program-lang/
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kusumotolab/lecture-program-lang
