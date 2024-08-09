@@ -39,12 +39,12 @@
     pre code {
         /* code block & code span */
         font-size: inherit;
-        border: 1px solid var(--ma-sub-bg-color);
+        border: 2px solid var(--ma-sub-bg-color);
     }
 
     :not(pre)>code {
         /* code span only */
-        font-size: inherit;
+        font-size: .9em;
         border-radius: 3px;
         border: 1px solid #ceced5;
         margin: 0 .1em;
