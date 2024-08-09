@@ -1,0 +1,1052 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kusumotolab.github.io/lecture-program-lang/pre-features/">
+      
+      
+        <link rel="prev" href="../pre-intro/">
+      
+      
+        <link rel="next" href="../pre-syntax/">
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>特徴と分類 - 計算機言語</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M80 160c0-35.3 28.7-64 64-64h32c35.3 0 64 28.7 64 64v3.6c0 21.8-11.1 42.1-29.4 53.8l-42.2 27.1a87.983 87.983 0 0 0-40.4 74v1.4c0 17.7 14.3 32 32 32s32-14.3 32-32v-1.4c0-8.2 4.2-15.8 11-20.2l42.2-27.1c36.6-23.6 58.8-64.1 58.8-107.7v-3.6c0-70.7-57.3-128-128-128h-32C73.3 32 16 89.3 16 160c0 17.7 14.3 32 32 32s32-14.3 32-32zm80 320a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="計算機言語" class="md-header__button md-logo" aria-label="計算機言語" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 64C28.7 64 0 92.7 0 128v256c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H64zm16 64h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm80-176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h224c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16v-32zm112-208h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm112-112h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm112-112h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            計算機言語
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              特徴と分類
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="計算機言語" class="md-nav__button md-logo" aria-label="計算機言語" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 64C28.7 64 0 92.7 0 128v256c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H64zm16 64h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm80-176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h224c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16v-32zm112-208h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm112-112h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm112-112h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16zm-16 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16z"/></svg>
+
+    </a>
+    計算機言語
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+  
+  <span class="md-ellipsis">
+    講義の概要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre-intro/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"/></svg>
+  
+  <span class="md-ellipsis">
+    序論
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"/></svg>
+  
+  <span class="md-ellipsis">
+    特徴と分類
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"/></svg>
+  
+  <span class="md-ellipsis">
+    特徴と分類
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログラミングパラダイム
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ノイマン型コンピュータ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre-syntax/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44-.02.49-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3v-3.75Z"/></svg>
+  
+  <span class="md-ellipsis">
+    構文
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paradigm-imperative/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12Z"/></svg>
+  
+  <span class="md-ellipsis">
+    命令型言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paradigm-oo/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12Z"/></svg>
+  
+  <span class="md-ellipsis">
+    オブジェクト指向言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paradigm-functional/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12Z"/></svg>
+  
+  <span class="md-ellipsis">
+    関数型言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paradigm-logic/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12Z"/></svg>
+  
+  <span class="md-ellipsis">
+    論理型言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language-c/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19c0 1.08.25 2.09.68 3H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h1v7l2.5-1.5L12 9V2h6a2 2 0 0 1 2 2v8.08c-.33-.05-.66-.08-1-.08-3.87 0-7 3.13-7 7m11.8 1.4c.1 0 .1.1 0 .2l-1 1.7c-.1.1-.2.1-.3.1l-1.2-.4c-.3.2-.5.3-.8.5l-.2 1.3c0 .1-.1.2-.2.2h-2c-.1 0-.2-.1-.3-.2l-.2-1.3c-.3-.1-.6-.3-.8-.5l-1.2.5c-.1 0-.2 0-.3-.1l-1-1.7c-.1-.1 0-.2.1-.3l1.1-.8v-1l-1.1-.8c-.1-.1-.1-.2-.1-.3l1-1.7c.1-.1.2-.1.3-.1l1.2.5c.3-.2.5-.3.8-.5l.2-1.3c0-.1.1-.2.3-.2h2c.1 0 .2.1.2.2l.2 1.3c.3.1.6.3.9.5l1.2-.5c.1 0 .3 0 .3.1l1 1.7c.1.1 0 .2-.1.3l-1.1.8v1l1.1.8M20.5 19c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5.7 1.5 1.5 1.5 1.5-.7 1.5-1.5Z"/></svg>
+  
+  <span class="md-ellipsis">
+    C言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language-java/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19c0 1.08.25 2.09.68 3H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h1v7l2.5-1.5L12 9V2h6a2 2 0 0 1 2 2v8.08c-.33-.05-.66-.08-1-.08-3.87 0-7 3.13-7 7m11.8 1.4c.1 0 .1.1 0 .2l-1 1.7c-.1.1-.2.1-.3.1l-1.2-.4c-.3.2-.5.3-.8.5l-.2 1.3c0 .1-.1.2-.2.2h-2c-.1 0-.2-.1-.3-.2l-.2-1.3c-.3-.1-.6-.3-.8-.5l-1.2.5c-.1 0-.2 0-.3-.1l-1-1.7c-.1-.1 0-.2.1-.3l1.1-.8v-1l-1.1-.8c-.1-.1-.1-.2-.1-.3l1-1.7c.1-.1.2-.1.3-.1l1.2.5c.3-.2.5-.3.8-.5l.2-1.3c0-.1.1-.2.3-.2h2c.1 0 .2.1.2.2l.2 1.3c.3.1.6.3.9.5l1.2-.5c.1 0 .3 0 .3.1l1 1.7c.1.1 0 .2-.1.3l-1.1.8v1l1.1.8M20.5 19c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5.7 1.5 1.5 1.5 1.5-.7 1.5-1.5Z"/></svg>
+  
+  <span class="md-ellipsis">
+    Java言語
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログラミングパラダイム
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ノイマン型コンピュータ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<!--
+hi-lock: (("^!!!.*" (0 "hi-red-b" t)))
+hi-lock: (("^\\?\\?\\?.*" (0 "hi-red-b" t)))
+hi-lock: end
+-->
+
+<h1 id="_1">プログラミング言語の特徴と分類<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p><span class="md-tag">教科書2章</span> <span class="md-tag">導入</span></p>
+<h2 id="_2">プログラミングパラダイム<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>プログラミングパラダイムとは，プログラミング言語が持つプログラムの規範や哲学のことである．
+以下の図は代表的なパラダイムの親子関係である．</p>
+<pre class="mermaid"><code>graph TD
+  パラダイム --&gt; 命令形;
+  パラダイム --&gt; 宣言型;
+  命令形 --&gt;|ほぼ同義| 手続き型;
+  命令形 --&gt; オブジェクト指向;
+  宣言型 --&gt; 関数型;
+  宣言型 --&gt; 論理型;</code></pre>
+<p>例えば，FortranやC言語，Pythonは命令型（≒手続き型）のパラダイムに従って設計されている．
+命令形では命令（四則演算や比較，代入等）の逐次的な処理によってプログラムを実現する．</p>
+<div class="language-c highlight"><span class="filename">C言語による0～10の加算処理</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-py highlight"><span class="filename">Pythonによる0～10の加算処理</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</span></code></pre></div>
+<p>パラダイムが異なる言語は，その大原則となる規範や哲学が異なるため記法が大幅に変わる．
+LispやScalaは関数型パラダイムを採用しており，命令形とは別の考えに従っている．
+その大原則は関数適用（application）の繰り返しである．
+関数型の詳細については<a href="../paradigm-functional/">別の講義回</a>で触れる．</p>
+<div class="language-lisp highlight"><span class="filename">Lispによる0～10の加算処理</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">(</span><span class="nb">format</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="s">&quot;~d&quot;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">(</span><span class="nb">loop</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nv">sum</span><span class="w"> </span><span class="nv">i</span><span class="p">))</span>
+</span></code></pre></div>
+<p>パラダイムは規範であり厳密な定義はできない．
+書籍や文献によって様々な解釈がある点に注意すること．
+命令形と手続き型は同一視されることが多い．
+命令形と宣言型は基本的に対義関係にある．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>音楽のロックというジャンルを厳密に定義できないのと同様である．</p>
+</div>
+<p>世の中には様々なパラダイムが存在している．
+新たなプログラミング言語を学ぶ際は，その言語がどのパラダイムを採用しているかを強く意識すること．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>昨今は複数のパラダイムを採用したマルチパラダイム言語が一般的である．
+各種パラダイムの利点を組み合わせて良い言語を設計している．
+例えばJavaはオブジェクト指向言語であるが，部分的に関数型の機構（ラムダ式やStream API等）を採り入れている．</p>
+<p>パラダイムは排他的ではなく共存可能である．</p>
+</div>
+<p>教科書では，計算モデルを共有するプログラミングの枠組みをプログラミングパラダイムと読んでいる．
+すなわち「パラダイムの違い＝規範や哲学の違い＝計算モデルの違い」と捉えることができる．
+以降では，命令形パラダイムが採用する計算モデル，ノイマン型コンピュータについて説明する．</p>
+<h2 id="_3">ノイマン型コンピュータ<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<details class="info">
+<summary>John von Neumann</summary>
+<p><img alt="" src="../assets/neumann.gif" />
+&copy;<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+</details>
+<p>プログラムとデータを記憶装置に格納し，順番に読み込んで実行するコンピュータである．
+現在のほとんど全てのコンピュータがノイマン型に相当する．
+以降ではノイマン型コンピュータを単にコンピュータと呼ぶ．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>量子コンピュータは非ノイマン型である．</p>
+</div>
+<!-- 命令形は最初に生まれたパラダイムであり，コンピュータの基本動作と密接に関わっている．-->
+<p>コンピュータの基本構成は以下の通りである．単純化のために入出力装置を省略している．</p>
+<pre class="mermaid"><code>graph LR
+    Memory-- load --&gt;CPU
+    CPU-- store --&gt;Memory
+</code></pre>
+<p>コンピュータの基本動作は以下3ステップである．</p>
+<ol>
+<li>メモリからデータをCPUへ転送（<code>load</code>）</li>
+<li>演算の実行（<code>add</code>等）</li>
+<li>結果をCPUからメモリへ格納（<code>store</code>）</li>
+</ol>
+<p><a href="../pre-intro/#_3">序論で示したアセンブリ</a>の動作と同一である．</p>
+<div class="language-clean highlight"><span class="filename">単純なアセンブリ言語プログラム（再掲）</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">load</span><span class="w"> </span><span class="nc">B</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">add</span><span class="w"> </span><span class="nc">C</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">store</span><span class="w"> </span><span class="nc">A</span>
+</span></code></pre></div>
+<p>この<code>load</code>→<code>any process</code>→<code>store</code>の操作を抽象化すると，右辺に式を持つ代入文とみなせる．</p>
+<div class="language-c highlight"><span class="filename">C言語の代入文</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&lt;</span><span class="n">変数名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">式</span><span class="o">&gt;</span><span class="p">;</span><span class="w">  </span><span class="c1">// A = B + C;</span>
+</span></code></pre></div>
+<p>命令型言語はこのような代入文の繰り返しによって，変数の値を動的に変化させ計算を行う点に特徴がある．
+まとめると命令型言語は以下の特徴を持つ．</p>
+<dl>
+<dt>基本要素：</dt>
+<dd>変数 ... データと計算結果を保持</dd>
+<dd>文　 ... 代入文（<code>=</code>）や制御文（<code>if</code> <code>for</code>）など</dd>
+<dt>特徴：</dt>
+<dd>①代入文の繰り返しで計算を行う</dd>
+<dd>②プログラムは文の並びであり，逐次的に実行する</dd>
+<dd>③代入文によって変数の値を動的に変化させて計算する</dd>
+</dl>
+<div class="admonition note annotate">
+<p class="admonition-title">Note</p>
+<p>この時点で驚きのある内容ではないはず．皆さんのよく知る一般的なプログラミング言語(1)の挙動である．</p>
+</div>
+<ol>
+<li>CやPython等の命令形パラダイムの言語のこと．</li>
+</ol>
+<h2 id="ram">RAM<a class="headerlink" href="#ram" title="Permanent link">#</a></h2>
+<p>ノイマン型コンピュータをさらに単純化した論理的な計算モデル，RAM（random-access machine）を考える．
+命令形パラダイムの本質を理解するためである．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ここでのランダムは「任意の」という意味であり「無作為」の意味ではない．
+メモリの任意の場所にアクセスできる機械という意味である．
+順序に従ってのみアクセスできるという，チューリングマシン（TM）のテープと対比するための用語．</p>
+<p>現在のメモリはランダムアクセスが可能なため，TMよりもRAMの方が現実に近い．</p>
+</div>
+<p>RAMは1個のレジスタ<code>c(0)</code>を持つ．
+メモリは複数のメモリセルで構成されており，上から順に<code>c(1)</code> <code>c(2)</code>...と呼ぶ．</p>
+<p class="annotate">RAMの構成は以下の通りである．(1)</p>
+<ol>
+<li>ここでは入出力テープは省略して考える．</li>
+</ol>
+<div class="language-clean highlight"><span class="filename">RAMの構成</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">[</span><span class="err">プログラム</span><span class="p">]</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="mo">0000</span><span class="w"> </span><span class="mo">0000</span><span class="w"> </span><span class="mo">0001</span><span class="w"> </span><span class="err">◀</span><span class="w">  </span><span class="c1">// load A</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="mo">0001</span><span class="w"> </span><span class="mo">0000</span><span class="w"> </span><span class="mo">0010</span><span class="w">    </span><span class="c1">// add B</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="mo">0010</span><span class="w"> </span><span class="mo">0000</span><span class="w"> </span><span class="mo">0011</span><span class="w">    </span><span class="c1">// store C</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w"> </span><span class="o">..</span><span class="w">   </span><span class="o">..</span><span class="w">   </span><span class="o">..</span><span class="w">  </span><span class="err">↑</span><span class="w"> </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="p">[</span><span class="err">プログラムカウンタ</span><span class="p">]</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">[</span><span class="err">記憶装置</span><span class="p">]</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="err">レジスタ</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="err">メモリ</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">   </span><span class="err">〃</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w"> </span><span class="o">..</span><span class="w">    </span><span class="o">..</span><span class="w">    </span><span class="err">〃</span>
+</span></code></pre></div>
+<p>プログラム内の機械語命令は演算コードとオペランドの組で構成される．
+<div class="language-clean highlight"><span class="filename">機械語命令の構成</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&lt;</span><span class="err">演算コード</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">オペランド</span><span class="o">&gt;</span><span class="w">   </span><span class="c1">// load 1</span>
+</span></code></pre></div></p>
+<p class="annotate">演算コードは次の12個である．(1)</p>
+<ol>
+<li><code>read</code>と<code>write</code>は省略．</li>
+</ol>
+<!-- for annotate -->
+
+<ul>
+<li>転送命令 <code>load</code></li>
+<li>格納命令 <code>store</code></li>
+<li>四則演算 <code>add</code> <code>sub</code> <code>mult</code> <code>div</code></li>
+<li>制御命令 <code>jump</code> <code>jgtz</code> <code>jzero</code></li>
+<li>停止命令 <code>halt</code></li>
+</ul>
+<p>オペランドには定数，直接アドレス，間接アドレスのいずれかを指定できる．</p>
+<ul>
+<li><code>#i</code> ... 定数<code>i</code>を指定</li>
+<li><code>i</code> ... セル<code>c(i)</code>を指定（直接アドレス）</li>
+<li><code>*i</code> ... セル<code>c(c(i))</code>を指定（間接アドレス）</li>
+</ul>
+<p><code>load</code>と<code>store</code>に対する具体的なRAMの挙動を示す．
+<code>load</code>と<code>store</code>の主体は常に<code>c(0)</code>と考えると良い．</p>
+<div class="language-clean highlight"><span class="filename">load命令に対するRAMの動作例</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="err">命令</span><span class="w">        </span><span class="err">挙動</span><span class="w">            </span><span class="err">メモリ</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">-----------------------------------------------------------------</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">load</span><span class="w"> </span><span class="o">#</span><span class="mi">1</span><span class="w">    </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">←</span><span class="mi">1</span><span class="w">          </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">]</span><span class="w">  </span><span class="c1">// → 1</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">load</span><span class="w"> </span><span class="mi">1</span><span class="w">     </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">←</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">       </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">]</span><span class="w">  </span><span class="c1">// → 2</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1">// この値をc(0)へ転送</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">load</span><span class="w"> </span><span class="o">*</span><span class="mi">1</span><span class="w">    </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">←</span><span class="n">c</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w">    </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">]</span><span class="w">  </span><span class="c1">// → 5</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1">// この値をc(0)へ転送</span>
+</span></code></pre></div>
+<div class="language-clean highlight"><span class="filename">store命令に対するRAMの動作例</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="err">命令</span><span class="w">        </span><span class="err">挙動</span><span class="w">            </span><span class="err">メモリ</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">-----------------------------------------------------------------</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">store</span><span class="w"> </span><span class="o">#</span><span class="mi">1</span><span class="w">   </span><span class="err">これは</span><span class="nc">NG</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">store</span><span class="w"> </span><span class="mi">1</span><span class="w">    </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">→</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">       </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1">// この値をc(1)に格納</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">]</span><span class="w">  </span><span class="c1">// → 0</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">store</span><span class="w"> </span><span class="o">*</span><span class="mi">1</span><span class="w">   </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">→</span><span class="n">c</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w">    </span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1">// この値をc(c(1))に格納</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">                           </span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">]</span><span class="w">  </span><span class="c1">// → 0</span>
+</span></code></pre></div>
+<p>機械語命令にはジャンプのためのラベルを付与することもできる．
+<div class="language-clean highlight"><span class="filename">機械語命令の構成</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&lt;</span><span class="err">ラベル</span><span class="o">&gt;:</span><span class="w"> </span><span class="o">&lt;</span><span class="err">演算コード</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">オペランド</span><span class="o">&gt;</span><span class="w">   </span><span class="c1">// loop: load 1</span>
+</span></code></pre></div></p>
+<p>RAMの機械語プログラムは先頭から逐次的に実行されるが，制御命令（<code>jump</code> <code>jgtz</code> <code>jzero</code>）によって，命令のジャンプが可能である．
+例えば<code>jump loop</code>は<code>loop:</code>ラベルの命令へ制御を移動する．
+実際には，プログラムカウンタの値をそのラベルの値に変更することにより，ジャンプを実現している．</p>
+<!--無条件ジャンプ`jump`と条件付きジャンプ`jgtz` `jzero`が存在する．-->
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load a</code></td>
+<td><code>c(0)</code> ← <code>c(a)</code></td>
+</tr>
+<tr>
+<td><code>store a</code></td>
+<td><code>c(0)</code> → <code>c(a)</code></td>
+</tr>
+<tr>
+<td><code>add a</code></td>
+<td><code>c(0)</code> ← <code>c(0) + c(a)</code></td>
+</tr>
+<tr>
+<td><code>jump b</code></td>
+<td>プログラムカウンタ ← <code>b</code></td>
+</tr>
+<tr>
+<td><code>jgtz b</code></td>
+<td>プログラムカウンタ ← <code>b</code>，ただし<code>c(0) &gt; 0</code>ならば</td>
+</tr>
+<tr>
+<td><code>jzero b</code></td>
+<td>プログラムカウンタ ← <code>b</code>，ただし<code>c(0) = 0</code>ならば</td>
+</tr>
+<tr>
+<td><code>halt</code></td>
+<td>実行終了</td>
+</tr>
+</tbody>
+</table>
+<p>以上がRAMの主要構成の説明となる．
+続いて，具体的な計算処理を題材にRAMプログラムの挙動を考える．
+題材は<span class="arithmatex">\(\sum\limits_{n=1}^{50} n^2\)</span>を出力するプログラムである．</p>
+<div class="language-c highlight"><span class="filename">題材プログラム（C言語）</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">square</span><span class="p">;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span><span class="w">  </span><span class="c1">// 42925</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>上記Cプログラムに対応するRAMプログラムは次の通りである．
+各変数とRAM上のメモリセルの対応は以下の通り．</p>
+<ul>
+<li><code>c(1)</code>↔<code>i</code></li>
+<li><code>c(2)</code>↔<code>square</code></li>
+<li><code>c(3)</code>↔<code>sum</code></li>
+</ul>
+<div class="language-clean highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RAMプログラム</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="w">       </span><span class="n">load</span><span class="w">   </span><span class="o">#</span><span class="mi">0</span><span class="w">      </span><span class="c1">// sum = 0;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">       </span><span class="n">store</span><span class="w">  </span><span class="mi">3</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">       </span><span class="n">load</span><span class="w">   </span><span class="o">#</span><span class="mi">1</span><span class="w">      </span><span class="c1">// i = 1;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">       </span><span class="n">store</span><span class="w">  </span><span class="mi">1</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="n">loop</span><span class="o">:</span><span class="w">  </span><span class="n">load</span><span class="w">   </span><span class="mi">1</span><span class="w">       </span><span class="c1">// if (i &gt; 50) goto exit; (1)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">       </span><span class="n">sub</span><span class="w">    </span><span class="o">#</span><span class="mi">50</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">       </span><span class="n">jgtz</span><span class="w">   </span><span class="n">exit</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">       </span><span class="n">load</span><span class="w">   </span><span class="mi">1</span><span class="w">       </span><span class="c1">// square = i * i;</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">       </span><span class="n">mult</span><span class="w">   </span><span class="mi">1</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">       </span><span class="n">store</span><span class="w">  </span><span class="mi">2</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">       </span><span class="n">load</span><span class="w">   </span><span class="mi">3</span><span class="w">       </span><span class="c1">// sum += square;</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">       </span><span class="n">add</span><span class="w">    </span><span class="mi">2</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">       </span><span class="n">store</span><span class="w">  </span><span class="mi">3</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">       </span><span class="n">load</span><span class="w">   </span><span class="mi">1</span><span class="w">       </span><span class="c1">// i++;</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">       </span><span class="n">add</span><span class="w">    </span><span class="o">#</span><span class="mi">1</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="w">       </span><span class="n">store</span><span class="w">  </span><span class="mi">1</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="w">       </span><span class="n">jump</span><span class="w">   </span><span class="n">loop</span><span class="w">    </span><span class="c1">// goto loop;</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="n">exit</span><span class="o">:</span><span class="w">  </span><span class="n">write</span><span class="w">  </span><span class="mi">3</span><span class="w">       </span><span class="c1">// printf(&quot;%d&quot;, sum);</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="w">       </span><span class="n">halt</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><code>if (i - 50 &gt; 0)</code>と解釈．</li>
+</ol>
+<p>題材から分かる通り，C言語の文（<code>i = 0</code>）はRAMの機械語の数命令（<code>load</code> + <code>store</code>）に翻訳・コンパイルすることができる．
+また，C言語の制御文（<code>if (i &gt; 50) goto ..</code>）はRAMの制御命令（<code>load</code> + <code>sub</code> + <code>jgtz</code>）の組み合わせで実現できる．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>このコンパイル作業は<a href="https://dev.ics.es.osaka-u.ac.jp/enshud/">3年後期の演習D</a>で実装することになる．
+今のうちにRAMの基本動作をよく理解しておくこと．</p>
+</div>
+<p>ここで扱ったコンパイル作業は比較的単純な処理である．
+これは，C言語や命令型言語そのものの抽象度がそれほど高いものではないことを示唆している．
+言い換えれば，命令型言語はコンピュータの基本動作に強く依存して設計されているといえる．</p>
+<p>理論的に全てのCプログラムの計算はRAMで模倣可能である．
+C言語の計算モデルがRAMであるため，当然といえば当然である．</p>
+<h2 id="_4">まとめ<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>プログラミング言語が持つ規範や哲学であるプログラミングパラダイムについて説明した．
+パラダイムの違いとは，すなわち規範や哲学の違いであり，その言語が採用する計算モデルの違いと捉えることができる．</p>
+<p>続いて命令型言語の計算モデルであるノイマン型コンピュータについて説明した．
+その特徴は，逐次的な文の実行，及び代入文の繰り返しによって計算を実施する点にある．</p>
+<p>最後にノイマン型コンピュータをさらに単純化したRAMを紹介した．
+C言語のあらゆる計算処理はRAMで模倣可能である．</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="http://www.lanl.gov/">http://www.lanl.gov/</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../pre-intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 序論">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                序論
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../pre-syntax/" class="md-footer__link md-footer__link--next" aria-label="Next: 構文">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                構文
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/kusumotolab/lecture-program-lang" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.footer"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
